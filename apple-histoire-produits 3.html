@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apple — Design. Innovation. Histoire.</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#1d1d1f;
+    --ink-soft:#6e6e73;
+    --line: rgba(0,0,0,0.08);
+    --glass-fill: rgba(255,255,255,0.5);
+    --glass-border: rgba(255,255,255,0.7);
+    --accent:#0071e3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; justify-content:center; padding:14px 20px;
+  }
+  .nav-glass{
+    display:flex; align-items:center; gap:28px;
+    padding:10px 26px;
+    background:var(--glass-fill);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border:1px solid var(--glass-border);
+    border-radius:999px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.06);
+    font-size:13px; font-weight:500;
+  }
+  .nav-glass a{ color:var(--ink); text-decoration:none; opacity:0.8; }
+  .nav-glass a:hover{ opacity:1; }
+
+  section{ max-width:1080px; margin:0 auto; padding:120px 24px; }
+
+  .hero{ text-align:center; padding-top:200px; }
+  .hero .mark{ font-size:40px; margin-bottom:24px; }
+  .hero h1{
+    font-size:clamp(42px,7vw,88px);
+    line-height:1.05; letter-spacing:-0.03em; font-weight:600; margin:0 0 20px;
+  }
+  .hero p{ font-size:clamp(17px,2vw,22px); color:var(--ink-soft); max-width:620px; margin:0 auto 40px; }
+  .hero img{ max-width:220px; width:60%; margin:0 auto 30px; display:block; }
+  .hero-cta{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn{ padding:13px 26px; border-radius:980px; font-size:15px; font-weight:500; text-decoration:none; display:inline-block; }
+  .btn-primary{ background:var(--accent); color:#fff; }
+  .btn-outline{ border:1px solid var(--line); color:var(--ink); }
+
+  .section-head{ text-align:center; margin-bottom:56px; }
+  .section-head .eyebrow{ color:var(--accent); font-size:14px; font-weight:600; margin-bottom:10px; }
+  .section-head h2{ font-size:clamp(30px,4.5vw,48px); font-weight:600; letter-spacing:-0.02em; margin:0 0 12px; }
+  .section-head p{ color:var(--ink-soft); font-size:18px; max-width:600px; margin:0 auto; }
+
+  /* HISTOIRE — timeline */
+  .timeline{ position:relative; padding-left:32px; }
+  .timeline::before{
+    content:""; position:absolute; left:6px; top:4px; bottom:4px; width:2px;
+    background:linear-gradient(180deg,var(--accent),rgba(0,113,227,0.05)); border-radius:2px;
+  }
+  .t-item{ position:relative; padding-bottom:40px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:""; position:absolute; left:-32px; top:4px; width:12px; height:12px; border-radius:50%;
+    background:#fff; border:3px solid var(--accent); box-shadow:0 0 0 5px rgba(0,113,227,0.08);
+  }
+  .t-item .year{ font-size:14px; color:var(--accent); font-weight:600; margin-bottom:4px; }
+  .t-item h4{ margin:0 0 6px; font-size:19px; font-weight:600; }
+  .t-item p{ margin:0 0 10px; color:var(--ink-soft); font-size:15px; line-height:1.6; max-width:560px; }
+  .t-item img{ max-width:220px; width:100%; border-radius:14px; margin-top:6px; display:block; box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+
+  /* PRODUITS — cartes verre */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; }
+  .glass-card{
+    padding:30px 26px; border-radius:24px;
+    background:var(--glass-fill);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border:1px solid var(--glass-border);
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  }
+  .glass-card .year-launch{ font-size:13px; color:var(--ink-soft); margin-bottom:6px; }
+  .glass-card h3{ font-size:20px; margin:0 0 8px; font-weight:600; }
+  .glass-card p{ font-size:14.5px; line-height:1.55; color:var(--ink-soft); margin:0 0 10px; }
+  .glass-card img{ max-width:100%; height:120px; object-fit:contain; margin-bottom:12px; display:block; }
+
+  /* OS — bandeau */
+  .os-row{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px;
+  }
+  .os-item{
+    text-align:center; padding:26px 16px; border-radius:20px;
+    border:1px solid var(--line); background:#fafafa;
+  }
+  .os-item .dot{
+    width:44px; height:44px; margin:0 auto 14px; border-radius:12px;
+    background:linear-gradient(135deg,var(--a,#7dd3fc),var(--b,#a78bfa));
+  }
+  .os-item h4{ margin:0 0 6px; font-size:16px; font-weight:600; }
+  .os-item p{ margin:0; font-size:13px; color:var(--ink-soft); }
+
+  /* CULTURE / COMMUNAUTE */
+  .quote-panel{
+    border-radius:28px; padding:50px 44px;
+    background:var(--glass-fill);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border:1px solid var(--glass-border);
+    box-shadow:0 14px 40px rgba(0,0,0,0.05);
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:32px;
+  }
+  .quote-panel div h4{ font-size:16px; margin:0 0 8px; font-weight:600; }
+  .quote-panel div p{ font-size:14.5px; color:var(--ink-soft); line-height:1.6; margin:0; }
+
+  .final{ text-align:center; }
+  .final h2{ font-size:clamp(28px,4.5vw,46px); font-weight:600; letter-spacing:-0.02em; margin:0 0 14px; }
+  .final p{ color:var(--ink-soft); font-size:17px; margin:0 0 30px; }
+
+  footer{ text-align:center; padding:36px 24px 60px; color:var(--ink-soft); font-size:12px; border-top:1px solid var(--line); }
+
+  @media (prefers-reduced-motion: reduce){ * { transition:none !important; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-glass">
+    <a href="#histoire">Histoire</a>
+    <a href="#produits">Produits</a>
+    <a href="#os">Systèmes</a>
+    <a href="#communaute">Communauté</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/IPhone_1st_Gen.svg/400px-IPhone_1st_Gen.svg.png" alt="Premier iPhone, 2007" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy">
+  <h1>Think Different.<br>Depuis 1976.</h1>
+  <p>D'un garage à Cupertino à l'un des écosystèmes les plus utilisés au monde : le parcours d'une entreprise qui a redéfini l'informatique personnelle, la musique, le téléphone et l'ordinateur portable.</p>
+  <div class="hero-cta">
+    <a href="#histoire" class="btn btn-primary">Découvrir l'histoire</a>
+    <a href="#produits" class="btn btn-outline">Voir les produits</a>
+  </div>
+</section>
+
+<section id="histoire">
+  <div class="section-head">
+    <div class="eyebrow">Histoire</div>
+    <h2>Cinquante ans d'informatique.</h2>
+    <p>Des grandes étapes qui ont marqué l'industrie technologique.</p>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="year">1976</div>
+      <h4>Fondation</h4>
+      <p>Steve Jobs, Steve Wozniak et Ronald Wayne fondent Apple Computer dans un garage en Californie, avec l'Apple I comme premier produit.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Steve_Jobs_Headshot_2010-CROP.jpg/400px-Steve_Jobs_Headshot_2010-CROP.jpg" alt="Steve Jobs, cofondateur d'Apple" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy">
+    </div>
+    <div class="t-item">
+      <div class="year">1984</div>
+      <h4>Le Macintosh</h4>
+      <p>Premier ordinateur personnel grand public à succès doté d'une interface graphique et d'une souris, popularisé par une publicité restée culte.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Macintosh_128k_transparency.png/400px-Macintosh_128k_transparency.png" alt="Macintosh 128K, 1984" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy">
+    </div>
+    <div class="t-item">
+      <div class="year">1997</div>
+      <h4>Retour de Steve Jobs</h4>
+      <p>Après des années difficiles, Jobs revient à la tête de l'entreprise et relance une stratégie de produits plus simple et plus audacieuse.</p>
+    </div>
+    <div class="t-item">
+      <div class="year">2001</div>
+      <h4>iPod et Mac OS X</h4>
+      <p>Le lecteur de musique iPod change l'industrie musicale, tandis que Mac OS X pose les bases du système d'exploitation encore utilisé aujourd'hui.</p>
+    </div>
+    <div class="t-item">
+      <div class="year">2007</div>
+      <h4>iPhone</h4>
+      <p>Présenté par Steve Jobs comme un iPod, un téléphone et un appareil de communication Internet réunis en un seul objet tactile.</p>
+    </div>
+    <div class="t-item">
+      <div class="year">2010</div>
+      <h4>iPad</h4>
+      <p>Une nouvelle catégorie d'appareil se glisse entre le smartphone et l'ordinateur portable.</p>
+      <img src="https://en.wikipedia.org/wiki/Special:FilePath/IPad_in_Case.jpg" alt="iPad de première génération, 2010" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy">
+    </div>
+    <div class="t-item">
+      <div class="year">2011</div>
+      <h4>Disparition de Steve Jobs</h4>
+      <p>Tim Cook prend la direction de l'entreprise, poursuivant sa stratégie tout en l'orientant vers les services et de nouveaux marchés.</p>
+    </div>
+    <div class="t-item">
+      <div class="year">2020</div>
+      <h4>Puces Apple Silicon</h4>
+      <p>Les Mac abandonnent les processeurs Intel pour des puces conçues en interne, offrant autonomie et performance accrues.</p>
+    </div>
+    <div class="t-item">
+      <div class="year">2023</div>
+      <h4>Vision Pro</h4>
+      <p>Apple entre sur le marché de l'informatique spatiale avec un casque mêlant réalité augmentée et virtuelle.</p>
+    </div>
+  </div>
+</section>
+
+<section id="produits">
+  <div class="section-head">
+    <div class="eyebrow">Produits</div>
+    <h2>Un écosystème cohérent.</h2>
+    <p>Chaque appareil occupe une place précise, pensée pour fonctionner avec les autres.</p>
+  </div>
+  <div class="grid">
+    <div class="glass-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Macintosh_128k_transparency.png/400px-Macintosh_128k_transparency.png" alt="Mac" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy">
+      <div class="year-launch">Depuis 1984</div>
+      <h3>Mac</h3>
+      <p>Ordinateurs personnels, du MacBook Air ultraléger au Mac Pro destiné aux usages professionnels les plus exigeants.</p>
+    </div>
+    <div class="glass-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/IPhone_1st_Gen.svg/400px-IPhone_1st_Gen.svg.png" alt="iPhone" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy">
+      <div class="year-launch">Depuis 2007</div>
+      <h3>iPhone</h3>
+      <p>Le smartphone qui a défini les usages tactiles modernes, aujourd'hui décliné en plusieurs gammes et tailles.</p>
+    </div>
+    <div class="glass-card">
+      <img src="https://en.wikipedia.org/wiki/Special:FilePath/IPad_in_Case.jpg" alt="iPad" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy">
+      <div class="year-launch">Depuis 2010</div>
+      <h3>iPad</h3>
+      <p>Tablette polyvalente, entre lecture, création et productivité, avec un accessoire clavier et un stylet dédiés.</p>
+    </div>
+    <div class="glass-card">
+      <div class="year-launch">Depuis 2015</div>
+      <h3>Apple Watch</h3>
+      <p>Montre connectée centrée sur la santé, le suivi d'activité et les notifications rapides au poignet.</p>
+    </div>
+    <div class="glass-card">
+      <div class="year-launch">Depuis 2016</div>
+      <h3>AirPods</h3>
+      <p>Écouteurs sans fil qui ont popularisé l'usage des oreillettes Bluetooth au quotidien.</p>
+    </div>
+    <div class="glass-card">
+      <div class="year-launch">Depuis 2023</div>
+      <h3>Vision Pro</h3>
+      <p>Casque de réalité mixte permettant de superposer applications et contenus à l'environnement réel.</p>
+    </div>
+  </div>
+</section>
+
+<section id="os">
+  <div class="section-head">
+    <div class="eyebrow">Systèmes d'exploitation</div>
+    <h2>Une famille de logiciels.</h2>
+    <p>Chaque appareil a son système, conçu pour son usage tout en partageant un même langage visuel.</p>
+  </div>
+  <div class="os-row">
+    <div class="os-item"><div class="dot" style="--a:#a3a3a3;--b:#525252;"></div><h4>macOS</h4><p>Ordinateurs Mac</p></div>
+    <div class="os-item"><div class="dot" style="--a:#7dd3fc;--b:#38bdf8;"></div><h4>iOS</h4><p>iPhone</p></div>
+    <div class="os-item"><div class="dot" style="--a:#a78bfa;--b:#7c3aed;"></div><h4>iPadOS</h4><p>iPad</p></div>
+    <div class="os-item"><div class="dot" style="--a:#fca5a5;--b:#ef4444;"></div><h4>watchOS</h4><p>Apple Watch</p></div>
+    <div class="os-item"><div class="dot" style="--a:#6ee7b7;--b:#10b981;"></div><h4>tvOS</h4><p>Apple TV</p></div>
+    <div class="os-item"><div class="dot" style="--a:#fde68a;--b:#f59e0b;"></div><h4>visionOS</h4><p>Vision Pro</p></div>
+  </div>
+</section>
+
+<section id="communaute">
+  <div class="section-head">
+    <div class="eyebrow">Culture et communauté</div>
+    <h2>Un langage partagé.</h2>
+    <p>Au-delà des produits, une communauté d'utilisateurs et de développeurs qui échange, teste et débat.</p>
+  </div>
+  <div class="quote-panel">
+    <div>
+      <h4>Un design reconnaissable</h4>
+      <p>Simplicité des formes, matériaux soignés et cohérence entre le matériel et le logiciel restent au cœur de l'identité de la marque depuis des décennies.</p>
+    </div>
+    <div>
+      <h4>Un écosystème de développeurs</h4>
+      <p>Des millions d'applications sont conçues chaque année pour iOS, iPadOS et macOS, portées par une large communauté de créateurs.</p>
+    </div>
+    <div>
+      <h4>Des forums actifs</h4>
+      <p>Utilisateurs et passionnés partagent astuces, retours d'expérience et anticipations sur les prochaines nouveautés bien avant chaque annonce officielle.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <h2>Un même fil depuis 1976.</h2>
+  <p>Du garage de Los Altos aux appareils qui nous entourent aujourd'hui.</p>
+  <div class="hero-cta">
+    <a href="#histoire" class="btn btn-primary">Revoir la frise</a>
+  </div>
+</section>
+
+<footer>
+  Page de démonstration conceptuelle inspirée de l'histoire et des produits Apple. Non affiliée à Apple Inc.
+</footer>
+
+</body>
+</html>
